@@ -8,8 +8,8 @@ export const Curve = ({ isBottom, height, flipX, flipY, width, color }) => {
         <div
             style={{
                 position: "absolute",
-                top: !isBottom ? 0 : "initial",
-                bottom: isBottom ? 0 : "initial",
+                top: !isBottom ? 0 : "auto",
+                bottom: isBottom ? 0 : "auto",
                 left: 0,
                 width: "100%",
                 overflow: "hidden",
@@ -23,7 +23,7 @@ export const Curve = ({ isBottom, height, flipX, flipY, width, color }) => {
                 style={{
                     position: "absolute",
                     top: 0,
-                    left: flipY ? `${100 - width}%` : 0,
+                    left: 0,
                     height: height,
                     width: `${width}%`,
                 }}

@@ -128,8 +128,8 @@ const Curve = ({
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
     style: {
       position: "absolute",
-      top: !isBottom ? 0 : "initial",
-      bottom: isBottom ? 0 : "initial",
+      top: !isBottom ? 0 : "auto",
+      bottom: isBottom ? 0 : "auto",
       left: 0,
       width: "100%",
       overflow: "hidden",
@@ -141,7 +141,7 @@ const Curve = ({
       style: {
         position: "absolute",
         top: 0,
-        left: flipY ? `${100 - width}%` : 0,
+        left: 0,
         height: height,
         width: `${width}%`
       },
