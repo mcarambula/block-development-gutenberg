@@ -12,7 +12,11 @@ import metadata from "./block.json";
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps, InspectorControls } from "@wordpress/block-editor";
+import {
+	useBlockProps,
+	InspectorControls,
+	InnerBlocks,
+} from "@wordpress/block-editor";
 import { PanelBody, ToggleControl } from "@wordpress/components";
 
 /**
@@ -37,7 +41,20 @@ import { BottomCurveSettings } from "./components/bottomCurveSettings";
  */
 export default function Edit(props) {
 	const { attributes, setAttributes } = props;
-	const { enableTopCurve, width, height, flipX, flipY, color, enableBottomCurve, bottomWidth, bottomHeight, bottomFlipX, bottomFlipY, bottomColor } = attributes;
+	const {
+		enableTopCurve,
+		width,
+		height,
+		flipX,
+		flipY,
+		color,
+		enableBottomCurve,
+		bottomWidth,
+		bottomHeight,
+		bottomFlipX,
+		bottomFlipY,
+		bottomColor,
+	} = attributes;
 	const { className, ...blockProps } = useBlockProps();
 	return (
 		<>
@@ -52,6 +69,7 @@ export default function Edit(props) {
 						color={color.background}
 					/>
 				)}
+				<InnerBlocks />
 				{enableBottomCurve && (
 					<Curve
 						isBottom={true}
@@ -74,7 +92,10 @@ export default function Edit(props) {
 						onChange={(value) => setAttributes({ enableTopCurve: value })}
 						__nextHasNoMarginBottom={true}
 					/>
-					<TopCurveSettings attributes={attributes} setAttributes={setAttributes} />
+					<TopCurveSettings
+						attributes={attributes}
+						setAttributes={setAttributes}
+					/>
 				</PanelBody>
 				<PanelBody title="Bottom Curve">
 					<ToggleControl
@@ -85,7 +106,10 @@ export default function Edit(props) {
 						onChange={(value) => setAttributes({ enableBottomCurve: value })}
 						__nextHasNoMarginBottom={true}
 					/>
-					<BottomCurveSettings attributes={attributes} setAttributes={setAttributes} />
+					<BottomCurveSettings
+						attributes={attributes}
+						setAttributes={setAttributes}
+					/>
 				</PanelBody>
 			</InspectorControls>
 		</>
