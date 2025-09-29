@@ -11,7 +11,20 @@ return array(
 		'icon' => 'smiley',
 		'description' => 'Example block scaffolded with Create Block tool.',
 		'example' => array(
-			
+			'innerBlocks' => array(
+				array(
+					'name' => 'core/heading',
+					'attributes' => array(
+						'content' => 'Lorem Ipsum.'
+					)
+				),
+				array(
+					'name' => 'core/paragraph',
+					'attributes' => array(
+						'content' => 'This is an example of a curvy block.'
+					)
+				)
+			)
 		),
 		'supports' => array(
 			'html' => false,
@@ -22,6 +35,24 @@ return array(
 			),
 			'spacing' => array(
 				'padding' => true
+			)
+		),
+		'variations' => array(
+			array(
+				'name' => 'top-only',
+				'title' => 'Curvy Top Only',
+				'attributes' => array(
+					'enableTopCurve' => true,
+					'enableBottomCurve' => false
+				)
+			),
+			array(
+				'name' => 'bottom-only',
+				'title' => 'Curvy Bottom Only',
+				'attributes' => array(
+					'enableTopCurve' => false,
+					'enableBottomCurve' => true
+				)
 			)
 		),
 		'attributes' => array(

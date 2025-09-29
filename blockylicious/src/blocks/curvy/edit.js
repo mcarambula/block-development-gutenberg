@@ -69,7 +69,9 @@ export default function Edit(props) {
 						color={color.background}
 					/>
 				)}
-				<InnerBlocks />
+				<div className="inner-blocks-wrapper">
+					<InnerBlocks />
+				</div>
 				{enableBottomCurve && (
 					<Curve
 						isBottom={true}

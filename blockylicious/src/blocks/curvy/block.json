@@ -7,7 +7,22 @@
 	"category": "blockylicious",
 	"icon": "smiley",
 	"description": "Example block scaffolded with Create Block tool.",
-	"example": {},
+	"example": {
+		"innerBlocks": [
+			{
+				"name": "core/heading",
+				"attributes": {
+					"content": "Lorem Ipsum."
+				}
+			},
+			{
+				"name": "core/paragraph",
+				"attributes": {
+					"content": "This is an example of a curvy block."
+				}
+			}
+		]
+	},
 	"supports": {
 		"html": false,
 		"color": {
@@ -19,6 +34,24 @@
 			"padding": true
 		}
 	},
+	"variations": [
+		{
+			"name": "top-only",
+			"title": "Curvy Top Only",
+			"attributes": {
+				"enableTopCurve": true,
+				"enableBottomCurve": false
+			}
+		},
+		{
+			"name": "bottom-only",
+			"title": "Curvy Bottom Only",
+			"attributes": {
+				"enableTopCurve": false,
+				"enableBottomCurve": true
+			}
+		}
+	],
 	"attributes": {
 		"style": {
 			"type": "object",

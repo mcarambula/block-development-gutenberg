@@ -6,3 +6,7 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.inner-blocks-wrapper {
+  max-width: 1024px;
+  margin: 0 auto;
+}

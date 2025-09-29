@@ -6,27 +6,32 @@
  */
 
 .wp-block-blockylicious-curvy {
-    position: relative;
-    overflow: hidden;
+	position: relative;
+	overflow: hidden;
 
-    .curve {
-        position: absolute;
-        left: 0;
-        width: 100%;
-        overflow: hidden;
+	.curve {
+		position: absolute;
+		left: 0;
+		width: 100%;
+		overflow: hidden;
 
-        &.top-curve {
-            top: 0;
-        }
+		&.top-curve {
+			top: 0;
+		}
 
-        &.bottom-curve {
-            bottom: 0;
-        }
+		&.bottom-curve {
+			bottom: 0;
+		}
 
-        svg {
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-    }
+		svg {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	}
+}
+
+.inner-blocks-wrapper {
+	max-width: 1024px;
+	margin: 0 auto;
 }
