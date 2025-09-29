@@ -4,10 +4,10 @@ return array(
 	'curvy' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'create-block/blockylicious',
+		'name' => 'blockylicious/curvy',
 		'version' => '0.1.0',
 		'title' => 'Blockylicious',
-		'category' => 'widgets',
+		'category' => 'blockylicious',
 		'icon' => 'smiley',
 		'description' => 'Example block scaffolded with Create Block tool.',
 		'example' => array(

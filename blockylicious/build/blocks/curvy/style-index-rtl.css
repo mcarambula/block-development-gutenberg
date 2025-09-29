@@ -7,23 +7,23 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.wp-block-create-block-blockylicious {
+.wp-block-blockylicious-curvy {
   position: relative;
   overflow: hidden;
 }
-.wp-block-create-block-blockylicious .curve {
+.wp-block-blockylicious-curvy .curve {
   position: absolute;
   right: 0;
   width: 100%;
   overflow: hidden;
 }
-.wp-block-create-block-blockylicious .curve.top-curve {
+.wp-block-blockylicious-curvy .curve.top-curve {
   top: 0;
 }
-.wp-block-create-block-blockylicious .curve.bottom-curve {
+.wp-block-blockylicious-curvy .curve.bottom-curve {
   bottom: 0;
 }
-.wp-block-create-block-blockylicious .curve svg {
+.wp-block-blockylicious-curvy .curve svg {
   position: absolute;
   top: 0;
   right: 0;

@@ -25,6 +25,17 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @see https://make.wordpress.org/core/2024/10/17/new-block-type-registration-apis-to-improve-performance-in-wordpress-6-7/
  */
 function create_block_blockylicious_block_init() {
+	add_filter( 'block_categories_all', 'create_custom_block_category' );
 	register_block_type( __DIR__ . "/build/blocks/curvy" );
 }
 add_action( 'init', 'create_block_blockylicious_block_init' );
+
+
+function create_custom_block_category( $categories ) {
+	array_unshift($categories, [
+		'slug'  => 'blockylicious',
+		'title' => 'Blockylicious',
+	]);
+
+	return $categories;
+}
