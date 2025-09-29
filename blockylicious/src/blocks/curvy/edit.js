@@ -72,6 +72,7 @@ export default function Edit(props) {
 						max={100}
 						checked={attributes.enableTopCurve}
 						onChange={(value) => setAttributes({ enableTopCurve: value })}
+						__nextHasNoMarginBottom={true}
 					/>
 					<TopCurveSettings attributes={attributes} setAttributes={setAttributes} />
 				</PanelBody>
@@ -82,6 +83,7 @@ export default function Edit(props) {
 						max={100}
 						checked={attributes.enableBottomCurve}
 						onChange={(value) => setAttributes({ enableBottomCurve: value })}
+						__nextHasNoMarginBottom={true}
 					/>
 					<BottomCurveSettings attributes={attributes} setAttributes={setAttributes} />
 				</PanelBody>

@@ -53,7 +53,9 @@ const BottomCurveSettings = ({
       value: bottomWidth,
       onChange: value => setAttributes({
         bottomWidth: value
-      })
+      }),
+      __next40pxDefaultSize: true,
+      __nextHasNoMarginBottom: true
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Height", _block_json__WEBPACK_IMPORTED_MODULE_2__.textdomain),
       min: 0,
@@ -61,23 +63,27 @@ const BottomCurveSettings = ({
       value: bottomHeight,
       onChange: value => setAttributes({
         bottomHeight: value
-      })
+      }),
+      __next40pxDefaultSize: true,
+      __nextHasNoMarginBottom: true
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Flip X", _block_json__WEBPACK_IMPORTED_MODULE_2__.textdomain),
       checked: bottomFlipX,
       onChange: value => setAttributes({
         bottomFlipX: value
-      })
+      }),
+      __nextHasNoMarginBottom: true
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Flip Y", _block_json__WEBPACK_IMPORTED_MODULE_2__.textdomain),
       checked: bottomFlipY,
       onChange: value => setAttributes({
         bottomFlipY: value
-      })
+      }),
+      __nextHasNoMarginBottom: true
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       style: {
         display: "flex",
-        alignItems: "center",
+        flexDirection: "column",
         gap: "10px"
       },
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
@@ -177,7 +183,6 @@ const TopCurveSettings = ({
   attributes,
   setAttributes
 }) => {
-  console.log(attributes);
   const {
     enableTopCurve,
     width,
@@ -194,7 +199,9 @@ const TopCurveSettings = ({
       value: width,
       onChange: value => setAttributes({
         width: value
-      })
+      }),
+      __next40pxDefaultSize: true,
+      __nextHasNoMarginBottom: true
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Height", _block_json__WEBPACK_IMPORTED_MODULE_2__.textdomain),
       min: 0,
@@ -202,19 +209,23 @@ const TopCurveSettings = ({
       value: height,
       onChange: value => setAttributes({
         height: value
-      })
+      }),
+      __next40pxDefaultSize: true,
+      __nextHasNoMarginBottom: true
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Flip X", _block_json__WEBPACK_IMPORTED_MODULE_2__.textdomain),
       checked: flipX,
       onChange: value => setAttributes({
         flipX: value
-      })
+      }),
+      __nextHasNoMarginBottom: true
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Flip Y", _block_json__WEBPACK_IMPORTED_MODULE_2__.textdomain),
       checked: flipY,
       onChange: value => setAttributes({
         flipY: value
-      })
+      }),
+      __nextHasNoMarginBottom: true
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       style: {
         display: "flex",
@@ -349,7 +360,8 @@ function Edit(props) {
           checked: attributes.enableTopCurve,
           onChange: value => setAttributes({
             enableTopCurve: value
-          })
+          }),
+          __nextHasNoMarginBottom: true
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_topCurveSettings__WEBPACK_IMPORTED_MODULE_6__.TopCurveSettings, {
           attributes: attributes,
           setAttributes: setAttributes
@@ -363,7 +375,8 @@ function Edit(props) {
           checked: attributes.enableBottomCurve,
           onChange: value => setAttributes({
             enableBottomCurve: value
-          })
+          }),
+          __nextHasNoMarginBottom: true
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_bottomCurveSettings__WEBPACK_IMPORTED_MODULE_7__.BottomCurveSettings, {
           attributes: attributes,
           setAttributes: setAttributes
