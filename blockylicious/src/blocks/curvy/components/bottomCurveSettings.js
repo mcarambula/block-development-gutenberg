@@ -33,7 +33,7 @@ export const BottomCurveSettings = ({ attributes, setAttributes }) => {
                     checked={bottomFlipY}
                     onChange={(value) => setAttributes({ bottomFlipY: value })}
                 />
-                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                     <label>{__("Curve Color", metadata.textdomain)}</label>
                     <ColorPalette
                         value={bottomColor.background}
