@@ -3,7 +3,7 @@
 	"apiVersion": 3,
 	"name": "blockylicious/curvy",
 	"version": "0.1.0",
-	"title": "Blockylicious",
+	"title": "Curvy",
 	"category": "blockylicious",
 	"icon": "smiley",
 	"description": "Example block scaffolded with Create Block tool.",
