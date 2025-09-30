@@ -27,6 +27,10 @@ return array(
 			)
 		),
 		'attributes' => array(
+			'postType' => array(
+				'type' => 'string',
+				'default' => ''
+			),
 			'labelText' => array(
 				'type' => 'string',
 				'default' => 'Button'
