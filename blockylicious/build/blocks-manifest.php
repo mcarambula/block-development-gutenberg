@@ -15,13 +15,6 @@ return array(
 		),
 		'supports' => array(
 			'html' => false,
-			'color' => array(
-				'background' => true,
-				'text' => true,
-				'link' => false,
-				'gradients' => true,
-				'enableContrastChecker' => true
-			),
 			'spacing' => array(
 				'padding' => true
 			)
@@ -31,6 +24,9 @@ return array(
 				'type' => 'string',
 				'default' => ''
 			),
+			'linkedPost' => array(
+				'type' => 'number'
+			),
 			'labelText' => array(
 				'type' => 'string',
 				'default' => 'Button'
@@ -38,10 +34,6 @@ return array(
 			'style' => array(
 				'type' => 'object',
 				'default' => array(
-					'color' => array(
-						'background' => '#503AA8',
-						'text' => '#fff'
-					),
 					'spacing' => array(
 						'padding' => array(
 							'top' => '10px',
@@ -51,6 +43,22 @@ return array(
 						)
 					)
 				)
+			),
+			'backgroundColor' => array(
+				'type' => 'string',
+				'default' => '#503AA8'
+			),
+			'textColor' => array(
+				'type' => 'string',
+				'default' => '#fff'
+			),
+			'hoverColor' => array(
+				'type' => 'string',
+				'default' => '#114BB1'
+			),
+			'hoverTextColor' => array(
+				'type' => 'string',
+				'default' => '#fff'
 			)
 		),
 		'textdomain' => 'blockylicious',

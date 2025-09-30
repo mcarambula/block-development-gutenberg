@@ -16,6 +16,24 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
+
+function convert_custom_properties($value) {
+	$prefix     = 'var:';
+	$prefix_len = strlen($prefix);
+	$token_in   = '|';
+	$token_out  = '--';
+	if (str_starts_with($value, $prefix)) {
+		$unwrapped_name = str_replace(
+			$token_in,
+			$token_out,
+			substr($value, $prefix_len)
+		);
+		$value          = "var(--wp--$unwrapped_name)";
+	}
+
+	return $value;
+}
+
 /**
  * Registers the block using a `blocks-manifest.php` file, which improves the performance of block type registration.
  * Behind the scenes, it also registers all assets so they can be enqueued

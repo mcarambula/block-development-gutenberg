@@ -1,0 +1,12 @@
+.wp-block-blockylicious-clicky-button {
+	background-color: var(--btn-bg);
+	color: var(--btn-text);
+	text-decoration: none;
+	transition:
+		background-color 0.2s ease-in-out,
+		color 0.2s ease-in-out;
+}
+.wp-block-blockylicious-clicky-button:hover {
+	background-color: var(--hover-bg);
+	color: var(--hover-text);
+}

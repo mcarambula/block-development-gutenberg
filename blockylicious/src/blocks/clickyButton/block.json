@@ -10,13 +10,6 @@
 	"example": {},
 	"supports": {
 		"html": false,
-		"color": {
-			"background": true,
-			"text": true,
-			"link": false,
-			"gradients": true,
-			"enableContrastChecker": true
-		},
 		"spacing": {
 			"padding": true
 		}
@@ -26,6 +19,9 @@
 			"type": "string",
 			"default": ""
 		},
+		"linkedPost": {
+			"type": "number"
+		},
 		"labelText": {
 			"type": "string",
 			"default": "Button"
@@ -33,10 +29,6 @@
 		"style": {
 			"type": "object",
 			"default": {
-				"color": {
-					"background": "#503AA8",
-					"text": "#fff"
-				},
 				"spacing": {
 					"padding": {
 						"top": "10px",
@@ -46,6 +38,22 @@
 					}
 				}
 			}
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": "#503AA8"
+		},
+		"textColor": {
+			"type": "string",
+			"default": "#fff"
+		},
+		"hoverColor": {
+			"type": "string",
+			"default": "#114BB1"
+		},
+		"hoverTextColor": {
+			"type": "string",
+			"default": "#fff"
 		}
 	},
 	"textdomain": "blockylicious",

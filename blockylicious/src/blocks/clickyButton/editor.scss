@@ -1,0 +1,14 @@
+.wp-block-blockylicious-clicky-button {
+	--btn-bg: #503aa8;
+	--btn-text: #ffffff;
+	--hover-bg: #514bb1;
+	--hover-text: #ffffff;
+	background-color: var(--btn-bg);
+	color: var(--btn-text);
+	transition: background-color 0.3s ease;
+
+	&:hover {
+		background-color: var(--hover-bg);
+		color: var(--hover-text);
+	}
+}

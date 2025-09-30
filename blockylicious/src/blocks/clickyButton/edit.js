@@ -7,10 +7,26 @@ import {
 	InspectorControls,
 } from "@wordpress/block-editor";
 
-import { PanelBody, SelectControl } from "@wordpress/components";
+import {
+	PanelBody,
+	SelectControl,
+	HorizontalRule,
+	ColorPalette,
+} from "@wordpress/components";
 import { useSelect } from "@wordpress/data";
 
+import "./editor.scss";
+
 export default function Edit(props) {
+	const { attributes, setAttributes } = props;
+
+	const {
+		textColor = "#ffffff",
+		backgroundColor = "#503AA8",
+		hoverTextColor = "#ffffff",
+		hoverColor = "#514BB1",
+	} = attributes;
+
 	/* Getting the post and pages. */
 	const postTypes = useSelect((select) => {
 		const data = select("core").getEntityRecords("root", "postType", {
@@ -21,13 +37,37 @@ export default function Edit(props) {
 				postType.visibility.show_ui && postType.visibility.show_in_nav_menus,
 		);
 	});
-	const { attributes, setAttributes } = props;
-	const { className, ...blockProps } = useBlockProps();
+
+	const posts = useSelect(
+		(select) => {
+			const data = select("core").getEntityRecords(
+				"postType",
+				attributes?.postType,
+				{
+					per_page: -1,
+				},
+			);
+			return data;
+		},
+		[attributes?.postType],
+	);
+
+	const blockProps = useBlockProps({
+		className: "wp-block-blockylicious-clicky-button",
+		style: {
+			"--btn-bg": backgroundColor,
+			"--btn-text": textColor,
+			"--hover-bg": hoverColor,
+			"--hover-text": hoverTextColor,
+		},
+	});
+
+	console.log(blockProps);
 
 	/* on split , on replace empty to avoid enter breaklines */
 	return (
 		<>
-			<div className={className} {...blockProps}>
+			<div {...blockProps}>
 				<RichText
 					value={attributes.labelText}
 					onChange={(value) => setAttributes({ labelText: value })}
@@ -39,6 +79,28 @@ export default function Edit(props) {
 				/>
 			</div>
 			<InspectorControls>
+				<PanelBody title={__("Button Style", metadata.textdomain)}>
+					<p>{__("Text Color", metadata.textdomain)}</p>
+					<ColorPalette
+						value={attributes.textColor}
+						onChange={(value) => setAttributes({ textColor: value })}
+					/>
+					<p>{__("Background Color", metadata.textdomain)}</p>
+					<ColorPalette
+						value={attributes.backgroundColor}
+						onChange={(value) => setAttributes({ backgroundColor: value })}
+					/>
+					<p>{__("Hover Text Color", metadata.textdomain)}</p>
+					<ColorPalette
+						value={attributes.hoverTextColor}
+						onChange={(value) => setAttributes({ hoverTextColor: value })}
+					/>
+					<p>{__("Hover Background Color", metadata.textdomain)}</p>
+					<ColorPalette
+						value={attributes.hoverColor}
+						onChange={(value) => setAttributes({ hoverBackgroundColor: value })}
+					/>
+				</PanelBody>
 				<PanelBody title={__("Destination", metadata.textdomain)}>
 					<SelectControl
 						label={__("Type", metadata.textdomain)}
@@ -55,6 +117,31 @@ export default function Edit(props) {
 							})),
 						]}
 					/>
+					{attributes.postType && (
+						<>
+							<HorizontalRule />
+							<SelectControl
+								label={__(`Linked ${attributes.postType}`, metadata.textdomain)}
+								value={attributes.linkedPost}
+								onChange={(value) =>
+									setAttributes({ linkedPost: value ? parseInt(value) : null })
+								}
+								options={[
+									{
+										label: __(
+											`Select a ${attributes.postType} to link to`,
+											metadata.textdomain,
+										),
+										value: "",
+									},
+									...(posts || []).map((post) => ({
+										label: post.title.rendered,
+										value: post.id,
+									})),
+								]}
+							/>
+						</>
+					)}
 				</PanelBody>
 			</InspectorControls>
 		</>
