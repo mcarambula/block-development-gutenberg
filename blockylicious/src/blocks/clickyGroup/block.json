@@ -11,7 +11,8 @@
 	"supports": {
 		"html": false,
 		"spacing": {
-			"blockGap": true
+			"blockGap": true,
+			"margin": true
 		}
 	},
 	"attributes": {

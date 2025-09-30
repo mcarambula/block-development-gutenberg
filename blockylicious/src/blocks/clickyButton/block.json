@@ -49,7 +49,7 @@
 		},
 		"hoverColor": {
 			"type": "string",
-			"default": "#114BB1"
+			"default": "#412a9d"
 		},
 		"hoverTextColor": {
 			"type": "string",

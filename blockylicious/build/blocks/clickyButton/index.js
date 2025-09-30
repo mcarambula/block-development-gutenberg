@@ -51,7 +51,7 @@ var SvgClicky = function SvgClicky(props) {
   \********************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"blockylicious/clicky-button","version":"0.1.0","title":"Clicky Button","category":"blockylicious","icon":"smiley","description":"A clicky button.","example":{},"supports":{"html":false,"spacing":{"padding":true}},"attributes":{"postType":{"type":"string","default":""},"linkedPost":{"type":"number"},"labelText":{"type":"string","default":"Button"},"style":{"type":"object","default":{"spacing":{"padding":{"top":"10px","right":"15px","bottom":"10px","left":"15px"}}}},"backgroundColor":{"type":"string","default":"#503AA8"},"textColor":{"type":"string","default":"#fff"},"hoverColor":{"type":"string","default":"#114BB1"},"hoverTextColor":{"type":"string","default":"#fff"}},"textdomain":"blockylicious","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","parent":["blockylicious/clicky-group"]}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"blockylicious/clicky-button","version":"0.1.0","title":"Clicky Button","category":"blockylicious","icon":"smiley","description":"A clicky button.","example":{},"supports":{"html":false,"spacing":{"padding":true}},"attributes":{"postType":{"type":"string","default":""},"linkedPost":{"type":"number"},"labelText":{"type":"string","default":"Button"},"style":{"type":"object","default":{"spacing":{"padding":{"top":"10px","right":"15px","bottom":"10px","left":"15px"}}}},"backgroundColor":{"type":"string","default":"#503AA8"},"textColor":{"type":"string","default":"#fff"},"hoverColor":{"type":"string","default":"#412a9d"},"hoverTextColor":{"type":"string","default":"#fff"}},"textdomain":"blockylicious","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","parent":["blockylicious/clicky-group"]}');
 
 /***/ }),
 
@@ -74,41 +74,86 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/clickyButton/editor.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
 
 
 
-
+function CompactColor({
+  label,
+  value,
+  onChange
+}) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      justifyContent: "space-between"
+    },
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+      className: "components-base-control__label",
+      children: label
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Dropdown, {
+      popoverProps: {
+        placement: "bottom-start",
+        flip: true,
+        shift: true,
+        boundary: "viewport"
+      },
+      renderToggle: ({
+        isOpen,
+        onToggle
+      }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+        onClick: onToggle,
+        "aria-expanded": isOpen,
+        variant: "secondary",
+        size: "small",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorIndicator, {
+          colorValue: value
+        })
+      }),
+      renderContent: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        style: {
+          padding: 8
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.ColorPalette, {
+          value: value,
+          onChange: v => onChange(v)
+        })
+      })
+    })]
+  });
+}
 function Edit(props) {
   const {
     attributes,
     setAttributes
   } = props;
   const {
+    labelText,
     textColor = "#ffffff",
     backgroundColor = "#503AA8",
     hoverTextColor = "#ffffff",
-    hoverColor = "#514BB1"
+    hoverColor = "#412a9d",
+    postType,
+    linkedPost
   } = attributes;
-
-  /* Getting the post and pages. */
   const postTypes = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => {
     const data = select("core").getEntityRecords("root", "postType", {
       per_page: -1
     });
-    return data?.filter(postType => postType.visibility.show_ui && postType.visibility.show_in_nav_menus);
-  });
+    return data?.filter(pt => pt.visibility?.show_ui && pt.visibility?.show_in_nav_menus);
+  }, []);
   const posts = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => {
-    const data = select("core").getEntityRecords("postType", attributes?.postType, {
+    if (!postType) return [];
+    return select("core").getEntityRecords("postType", postType, {
       per_page: -1
     });
-    return data;
-  }, [attributes?.postType]);
+  }, [postType]);
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
     className: "wp-block-blockylicious-clicky-button",
     style: {
@@ -118,14 +163,11 @@ function Edit(props) {
       "--hover-text": hoverTextColor
     }
   });
-  console.log(blockProps);
-
-  /* on split , on replace empty to avoid enter breaklines */
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
       ...blockProps,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-        value: attributes.labelText,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+        value: labelText,
         onChange: value => setAttributes({
           labelText: value
         }),
@@ -135,66 +177,70 @@ function Edit(props) {
         splitting: () => {},
         onReplace: () => {}
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Button Style", _block_json__WEBPACK_IMPORTED_MODULE_1__.textdomain),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
-          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Text Color", _block_json__WEBPACK_IMPORTED_MODULE_1__.textdomain)
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
-          value: attributes.textColor,
-          onChange: value => setAttributes({
-            textColor: value
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
-          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Background Color", _block_json__WEBPACK_IMPORTED_MODULE_1__.textdomain)
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
-          value: attributes.backgroundColor,
-          onChange: value => setAttributes({
-            backgroundColor: value
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
-          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Hover Text Color", _block_json__WEBPACK_IMPORTED_MODULE_1__.textdomain)
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
-          value: attributes.hoverTextColor,
-          onChange: value => setAttributes({
-            hoverTextColor: value
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
-          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Hover Background Color", _block_json__WEBPACK_IMPORTED_MODULE_1__.textdomain)
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
-          value: attributes.hoverColor,
-          onChange: value => setAttributes({
-            hoverBackgroundColor: value
-          })
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+        initialOpen: true,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          style: {
+            display: "flex",
+            flexDirection: "column",
+            gap: 12
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CompactColor, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Text", _block_json__WEBPACK_IMPORTED_MODULE_1__.textdomain),
+            value: textColor,
+            onChange: v => setAttributes({
+              textColor: v || "#ffffff"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CompactColor, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Background", _block_json__WEBPACK_IMPORTED_MODULE_1__.textdomain),
+            value: backgroundColor,
+            onChange: v => setAttributes({
+              backgroundColor: v || "#503AA8"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CompactColor, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Hover Text", _block_json__WEBPACK_IMPORTED_MODULE_1__.textdomain),
+            value: hoverTextColor,
+            onChange: v => setAttributes({
+              hoverTextColor: v || "#ffffff"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CompactColor, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Hover Background", _block_json__WEBPACK_IMPORTED_MODULE_1__.textdomain),
+            value: hoverColor,
+            onChange: v => setAttributes({
+              hoverColor: v || "#514BB1"
+            })
+          })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Destination", _block_json__WEBPACK_IMPORTED_MODULE_1__.textdomain),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Type", _block_json__WEBPACK_IMPORTED_MODULE_1__.textdomain),
-          value: attributes.postType,
+          value: postType,
           onChange: value => setAttributes({
             postType: value
           }),
           options: [{
             label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Select a post type", _block_json__WEBPACK_IMPORTED_MODULE_1__.textdomain),
             value: ""
-          }, ...(postTypes || []).map(postType => ({
-            label: postType.labels.singular_name,
-            value: postType.slug
+          }, ...(postTypes || []).map(pt => ({
+            label: pt.labels?.singular_name,
+            value: pt.slug
           }))]
-        }), attributes.postType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.HorizontalRule, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)(`Linked ${attributes.postType}`, _block_json__WEBPACK_IMPORTED_MODULE_1__.textdomain),
-            value: attributes.linkedPost,
+        }), postType && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.HorizontalRule, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)(`Linked ${postType}`, _block_json__WEBPACK_IMPORTED_MODULE_1__.textdomain),
+            value: linkedPost,
             onChange: value => setAttributes({
               linkedPost: value ? parseInt(value) : null
             }),
             options: [{
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)(`Select a ${attributes.postType} to link to`, _block_json__WEBPACK_IMPORTED_MODULE_1__.textdomain),
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)(`Select a ${postType} to link to`, _block_json__WEBPACK_IMPORTED_MODULE_1__.textdomain),
               value: ""
-            }, ...(posts || []).map(post => ({
-              label: post.title.rendered,
-              value: post.id
+            }, ...(posts || []).map(p => ({
+              label: p.title?.rendered,
+              value: p.id
             }))]
           })]
         })]
@@ -202,18 +248,6 @@ function Edit(props) {
     })]
   });
 }
-
-/***/ }),
-
-/***/ "./src/blocks/clickyButton/editor.scss":
-/*!*********************************************!*\
-  !*** ./src/blocks/clickyButton/editor.scss ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
 
 /***/ }),
 

@@ -54,7 +54,7 @@ return array(
 			),
 			'hoverColor' => array(
 				'type' => 'string',
-				'default' => '#114BB1'
+				'default' => '#412a9d'
 			),
 			'hoverTextColor' => array(
 				'type' => 'string',
@@ -85,7 +85,8 @@ return array(
 		'supports' => array(
 			'html' => false,
 			'spacing' => array(
-				'blockGap' => true
+				'blockGap' => true,
+				'margin' => true
 			)
 		),
 		'attributes' => array(

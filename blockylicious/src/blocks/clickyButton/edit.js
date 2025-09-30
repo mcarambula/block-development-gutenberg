@@ -1,55 +1,88 @@
 import { __ } from "@wordpress/i18n";
 import metadata from "./block.json";
-
 import {
 	useBlockProps,
 	RichText,
 	InspectorControls,
+	ColorPalette,
 } from "@wordpress/block-editor";
-
 import {
 	PanelBody,
 	SelectControl,
 	HorizontalRule,
-	ColorPalette,
+	Dropdown,
+	Button,
+	ColorIndicator,
 } from "@wordpress/components";
 import { useSelect } from "@wordpress/data";
 
-import "./editor.scss";
+function CompactColor({ label, value, onChange }) {
+	return (
+		<div
+			style={{
+				display: "flex",
+				alignItems: "center",
+				gap: 8,
+				justifyContent: "space-between",
+			}}
+		>
+			<span className="components-base-control__label">{label}</span>
+			<Dropdown
+				popoverProps={{
+					placement: "bottom-start",
+					flip: true,
+					shift: true,
+					boundary: "viewport",
+				}}
+				renderToggle={({ isOpen, onToggle }) => (
+					<Button
+						onClick={onToggle}
+						aria-expanded={isOpen}
+						variant="secondary"
+						size="small"
+					>
+						<ColorIndicator colorValue={value} />
+					</Button>
+				)}
+				renderContent={() => (
+					<div style={{ padding: 8 }}>
+						<ColorPalette value={value} onChange={(v) => onChange(v)} />
+					</div>
+				)}
+			/>
+		</div>
+	);
+}
 
 export default function Edit(props) {
 	const { attributes, setAttributes } = props;
-
 	const {
+		labelText,
 		textColor = "#ffffff",
 		backgroundColor = "#503AA8",
 		hoverTextColor = "#ffffff",
-		hoverColor = "#514BB1",
+		hoverColor = "#412a9d",
+		postType,
+		linkedPost,
 	} = attributes;
 
-	/* Getting the post and pages. */
 	const postTypes = useSelect((select) => {
 		const data = select("core").getEntityRecords("root", "postType", {
 			per_page: -1,
 		});
 		return data?.filter(
-			(postType) =>
-				postType.visibility.show_ui && postType.visibility.show_in_nav_menus,
+			(pt) => pt.visibility?.show_ui && pt.visibility?.show_in_nav_menus,
 		);
-	});
+	}, []);
 
 	const posts = useSelect(
 		(select) => {
-			const data = select("core").getEntityRecords(
-				"postType",
-				attributes?.postType,
-				{
-					per_page: -1,
-				},
-			);
-			return data;
+			if (!postType) return [];
+			return select("core").getEntityRecords("postType", postType, {
+				per_page: -1,
+			});
 		},
-		[attributes?.postType],
+		[postType],
 	);
 
 	const blockProps = useBlockProps({
@@ -62,14 +95,11 @@ export default function Edit(props) {
 		},
 	});
 
-	console.log(blockProps);
-
-	/* on split , on replace empty to avoid enter breaklines */
 	return (
 		<>
 			<div {...blockProps}>
 				<RichText
-					value={attributes.labelText}
+					value={labelText}
 					onChange={(value) => setAttributes({ labelText: value })}
 					placeholder={__("Button Label", metadata.textdomain)}
 					allowedFormats={[]}
@@ -78,65 +108,77 @@ export default function Edit(props) {
 					onReplace={() => {}}
 				/>
 			</div>
+
 			<InspectorControls>
-				<PanelBody title={__("Button Style", metadata.textdomain)}>
-					<p>{__("Text Color", metadata.textdomain)}</p>
-					<ColorPalette
-						value={attributes.textColor}
-						onChange={(value) => setAttributes({ textColor: value })}
-					/>
-					<p>{__("Background Color", metadata.textdomain)}</p>
-					<ColorPalette
-						value={attributes.backgroundColor}
-						onChange={(value) => setAttributes({ backgroundColor: value })}
-					/>
-					<p>{__("Hover Text Color", metadata.textdomain)}</p>
-					<ColorPalette
-						value={attributes.hoverTextColor}
-						onChange={(value) => setAttributes({ hoverTextColor: value })}
-					/>
-					<p>{__("Hover Background Color", metadata.textdomain)}</p>
-					<ColorPalette
-						value={attributes.hoverColor}
-						onChange={(value) => setAttributes({ hoverBackgroundColor: value })}
-					/>
+				<PanelBody
+					title={__("Button Style", metadata.textdomain)}
+					initialOpen={true}
+				>
+					{/* fila compacta */}
+					<div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+						<CompactColor
+							label={__("Text", metadata.textdomain)}
+							value={textColor}
+							onChange={(v) => setAttributes({ textColor: v || "#ffffff" })}
+						/>
+						<CompactColor
+							label={__("Background", metadata.textdomain)}
+							value={backgroundColor}
+							onChange={(v) =>
+								setAttributes({ backgroundColor: v || "#503AA8" })
+							}
+						/>
+						<CompactColor
+							label={__("Hover Text", metadata.textdomain)}
+							value={hoverTextColor}
+							onChange={(v) =>
+								setAttributes({ hoverTextColor: v || "#ffffff" })
+							}
+						/>
+						<CompactColor
+							label={__("Hover Background", metadata.textdomain)}
+							value={hoverColor}
+							onChange={(v) => setAttributes({ hoverColor: v || "#514BB1" })}
+						/>
+					</div>
 				</PanelBody>
+
 				<PanelBody title={__("Destination", metadata.textdomain)}>
 					<SelectControl
 						label={__("Type", metadata.textdomain)}
-						value={attributes.postType}
+						value={postType}
 						onChange={(value) => setAttributes({ postType: value })}
 						options={[
 							{
 								label: __("Select a post type", metadata.textdomain),
 								value: "",
 							},
-							...(postTypes || []).map((postType) => ({
-								label: postType.labels.singular_name,
-								value: postType.slug,
+							...(postTypes || []).map((pt) => ({
+								label: pt.labels?.singular_name,
+								value: pt.slug,
 							})),
 						]}
 					/>
-					{attributes.postType && (
+					{postType && (
 						<>
 							<HorizontalRule />
 							<SelectControl
-								label={__(`Linked ${attributes.postType}`, metadata.textdomain)}
-								value={attributes.linkedPost}
+								label={__(`Linked ${postType}`, metadata.textdomain)}
+								value={linkedPost}
 								onChange={(value) =>
 									setAttributes({ linkedPost: value ? parseInt(value) : null })
 								}
 								options={[
 									{
 										label: __(
-											`Select a ${attributes.postType} to link to`,
+											`Select a ${postType} to link to`,
 											metadata.textdomain,
 										),
 										value: "",
 									},
-									...(posts || []).map((post) => ({
-										label: post.title.rendered,
-										value: post.id,
+									...(posts || []).map((p) => ({
+										label: p.title?.rendered,
+										value: p.id,
 									})),
 								]}
 							/>
