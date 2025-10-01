@@ -16268,6 +16268,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+// https://docs.fontawesome.com/web/use-with/react/use-with
 _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_6__.config.autoAddCss = false;
 
 
@@ -16296,7 +16298,7 @@ function Edit(props) {
       }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
         className: "piccy-image-placeholder",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_4__.FontAwesomeIcon, {
-          icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faPanorama,
+          icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faImage,
           style: {
             margin: "auto"
           }
