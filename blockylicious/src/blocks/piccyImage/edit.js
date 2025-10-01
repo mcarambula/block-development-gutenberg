@@ -7,6 +7,13 @@ import { __ } from "@wordpress/i18n";
 import metadata from "./block.json";
 import { useSelect } from "@wordpress/data";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPanorama } from "@fortawesome/free-solid-svg-icons";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+
+config.autoAddCss = false;
+
 import "./editor.scss";
 
 export default function Edit(props) {
@@ -24,40 +31,45 @@ export default function Edit(props) {
 		[attributes.imageId],
 	);
 
-	console.log(image);
+	const imageSelected = !!attributes.imageId && !!image?.source_url;
 
 	return (
 		<>
 			<div {...blockProps}>
-				{attributes.imageId && image && image.source_url ? (
+				{imageSelected ? (
 					<img
 						src={image.source_url}
 						alt={image.alt}
 						style={{
 							width: "100%",
-							height: "250px",
+							height: "150px",
 							objectFit: "cover",
 							objectPosition: "center",
 						}}
 					/>
 				) : (
-					<MediaUploadCheck>
-						<MediaUpload
-							allowedTypes={["image"]}
-							value={attributes.imageId}
-							render={({ open }) => (
-								<button onClick={open}>
-									{__("Select an Image", metadata.textdomain)}
-								</button>
-							)}
-							onSelect={(media) => {
-								setAttributes({
-									imageId: media.id,
-								});
-							}}
-						/>
-					</MediaUploadCheck>
+					<div className="piccy-image-placeholder">
+						<FontAwesomeIcon icon={faPanorama} style={{ margin: "auto" }} />
+					</div>
 				)}
+				<MediaUploadCheck>
+					<MediaUpload
+						allowedTypes={["image"]}
+						value={attributes.imageId}
+						render={({ open }) => (
+							<button onClick={open} className="piccy-image-button">
+								{imageSelected
+									? __("Replace Image", metadata.textdomain)
+									: __("Select an Image", metadata.textdomain)}
+							</button>
+						)}
+						onSelect={(media) => {
+							setAttributes({
+								imageId: media.id,
+							});
+						}}
+					/>
+				</MediaUploadCheck>
 			</div>
 		</>
 	);

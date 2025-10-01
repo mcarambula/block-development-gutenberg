@@ -1,4 +1,35 @@
 .wp-block-blockylicious-piccy-image {
 	position: relative;
 	box-sizing: border-box;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+
+	.piccy-image-button {
+		width: 100%;
+		background-color: #eee;
+		border: 1px solid #ccc;
+		padding: 10px 20px;
+		text-align: center;
+		font-size: 10px;
+		font-weight: 600;
+		color: #333;
+		box-sizing: border-box;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+		text-transform: uppercase;
+		&:hover {
+			background-color: #c0c0c0;
+		}
+	}
+
+	.piccy-image-placeholder {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #ffffff;
+		min-height: 150px;
+	}
 }
