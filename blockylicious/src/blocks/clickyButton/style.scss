@@ -1,12 +1,18 @@
 .wp-block-blockylicious-clicky-button {
+	--btn-bg: #503aa8;
+	--btn-text: #ffffff;
+	--hover-bg: #514bb1;
+	--hover-text: #ffffff;
 	background-color: var(--btn-bg);
 	color: var(--btn-text);
-	text-decoration: none;
 	transition:
 		background-color 0.2s ease-in-out,
 		color 0.2s ease-in-out;
-}
-.wp-block-blockylicious-clicky-button:hover {
-	background-color: var(--hover-bg);
-	color: var(--hover-text);
+
+	&:hover {
+		background-color: var(--hover-bg);
+		color: var(--hover-text);
+		box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+	}
+	text-decoration: none;
 }

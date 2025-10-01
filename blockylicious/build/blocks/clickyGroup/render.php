@@ -1,6 +1,7 @@
 <?php
+use BlockyliciousModop\Blockylicious;
 
-$blockGap       = convert_custom_properties($attributes['style']['spacing']['blockGap'] ?? '10px');
+$blockGap       = Blockylicious::convert_custom_properties($attributes['style']['spacing']['blockGap'] ?? '10px');
 $justifyContent = $attributes['justifyContent'] ?? 'center';
 
 // Handle margin spacing

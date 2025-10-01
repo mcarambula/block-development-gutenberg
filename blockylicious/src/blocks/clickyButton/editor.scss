@@ -5,7 +5,9 @@
 	--hover-text: #ffffff;
 	background-color: var(--btn-bg);
 	color: var(--btn-text);
-	transition: background-color 0.3s ease;
+	transition:
+		background-color 0.2s ease-in-out,
+		color 0.2s ease-in-out;
 
 	&:hover {
 		background-color: var(--hover-bg);

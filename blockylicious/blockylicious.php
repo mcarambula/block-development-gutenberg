@@ -13,49 +13,54 @@
  * @package CreateBlock
  */
 
+/* Prevents Function Name Conflicts */
+namespace BlockyliciousModop;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-function convert_custom_properties($value) {
-	$prefix     = 'var:';
-	$prefix_len = strlen($prefix);
-	$token_in   = '|';
-	$token_out  = '--';
-	if (str_starts_with($value, $prefix)) {
-		$unwrapped_name = str_replace(
-			$token_in,
-			$token_out,
-			substr($value, $prefix_len)
-		);
-		$value          = "var(--wp--$unwrapped_name)";
+
+final class Blockylicious {
+	static function init() {
+		add_action( 'init', function(){
+			add_filter( 'block_categories_all', [self::class, 'create_custom_block_category'] );
+
+			register_block_type( __DIR__ . "/build/blocks/curvy" );
+			register_block_type( __DIR__ . "/build/blocks/clickyGroup" );
+			register_block_type( __DIR__ . "/build/blocks/clickyButton" );
+		} );
 	}
 
-	return $value;
+	/** This function is to create a custom block category, it's used 
+	 * to group the blocks. And puts it at the top of the list.
+	 * Without this function, the custom blocks would appear in the * default "Widgets" category, which is les organized and harder for users to find.
+	*/
+	static function create_custom_block_category($categories) {
+		array_unshift($categories, [
+			'slug'  => 'blockylicious',
+			'title' => 'Blockylicious',
+		]);
+		return $categories;
+	}
+	
+	/** Function to get the custom properties from the block (style) */
+	static function convert_custom_properties($value) {
+		$prefix     = 'var:';
+		$prefix_len = strlen($prefix);
+		$token_in   = '|';
+		$token_out  = '--';
+		if (str_starts_with($value, $prefix)) {
+			$unwrapped_name = str_replace(
+				$token_in,
+				$token_out,
+				substr($value, $prefix_len)
+			);
+			$value          = "var(--wp--$unwrapped_name)";
+		}
+
+		return $value;
+	}
 }
 
-/**
- * Registers the block using a `blocks-manifest.php` file, which improves the performance of block type registration.
- * Behind the scenes, it also registers all assets so they can be enqueued
- * through the block editor in the corresponding context.
- *
- * @see https://make.wordpress.org/core/2025/03/13/more-efficient-block-type-registration-in-6-8/
- * @see https://make.wordpress.org/core/2024/10/17/new-block-type-registration-apis-to-improve-performance-in-wordpress-6-7/
- */
-function create_block_blockylicious_block_init() {
-	add_filter( 'block_categories_all', 'create_custom_block_category' );
-	register_block_type( __DIR__ . "/build/blocks/curvy" );
-	register_block_type( __DIR__ . "/build/blocks/clickyGroup" );
-	register_block_type( __DIR__ . "/build/blocks/clickyButton" );
-}
-add_action( 'init', 'create_block_blockylicious_block_init' );
-
-
-function create_custom_block_category( $categories ) {
-	array_unshift($categories, [
-		'slug'  => 'blockylicious',
-		'title' => 'Blockylicious',
-	]);
-
-	return $categories;
-}
+Blockylicious::init();
