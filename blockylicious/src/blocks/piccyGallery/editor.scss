@@ -1,6 +1,28 @@
 .wp-block-blockylicious-piccy-gallery {
-    border: 1px dotted #f00;
-    position: relative;
-    padding: 40px;
-    box-sizing: border-box;
+	border: 1px dotted #f00;
+	position: relative;
+	box-sizing: border-box;
+	.edit-mode {
+		background-color: #eee;
+		padding: 40px;
+	}
+
+    .piccy-label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        background-color: #d1d1d1;
+        z-index: 10;
+        font-size: 10px;
+        font-weight: 600;
+        padding: 10px;
+        text-transform: uppercase;
+    }
+
+    .piccy-gallery-inner-blocks {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
 }

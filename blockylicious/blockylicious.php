@@ -30,6 +30,7 @@ final class Blockylicious {
 			register_block_type( __DIR__ . "/build/blocks/clickyGroup" );
 			register_block_type( __DIR__ . "/build/blocks/clickyButton" );
 			register_block_type( __DIR__ . "/build/blocks/piccyGallery" );
+			register_block_type( __DIR__ . "/build/blocks/piccyImage" );
 		} );
 	}
 

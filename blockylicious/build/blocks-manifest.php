@@ -259,5 +259,31 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
+	),
+	'piccyImage' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'blockylicious/piccy-image',
+		'version' => '0.1.0',
+		'title' => 'Piccy Image',
+		'category' => 'blockylicious',
+		'icon' => 'format-image',
+		'description' => 'An image to render within the Piccy Gallery',
+		'supports' => array(
+			'html' => false
+		),
+		'attributes' => array(
+			'imageId' => array(
+				'type' => 'number'
+			)
+		),
+		'textdomain' => 'blockylicious',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'parent' => array(
+			'blockylicious/piccy-gallery'
+		)
 	)
 );

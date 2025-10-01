@@ -1,0 +1,1 @@
+{"version":3,"file":"blocks/piccyImage/index.css","mappings":";;;AAAA;EACC;EACA;AACD,C","sources":["webpack://blockylicious/./src/blocks/piccyImage/editor.scss"],"sourcesContent":[".wp-block-blockylicious-piccy-image {\n\tposition: relative;\n\tbox-sizing: border-box;\n}\n"],"names":[],"sourceRoot":""}
