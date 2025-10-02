@@ -8,7 +8,7 @@
   \********************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"blockylicious/piccy-gallery","version":"0.1.0","title":"Piccy Gallery","category":"blockylicious","icon":"images-alt2","description":"An interactive gallery of images.","example":{},"supports":{"html":false},"textdomain":"blockylicious","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"blockylicious/piccy-gallery","version":"0.1.0","title":"Piccy Gallery","category":"blockylicious","icon":"images-alt2","description":"An interactive gallery of images.","example":{},"supports":{"html":false},"textdomain":"blockylicious","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }),
 
@@ -73,7 +73,10 @@ function Edit({
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
       ...blockProps,
       children: isPreviewOpen ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_ImageThumbnail__WEBPACK_IMPORTED_MODULE_6__.ImageThumbnail, {
+          imageId: previewModeImage.imageId,
+          imageHeight: "550px"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
           className: "preview-mode",
           children: (innerBlocks || []).map(block => {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
@@ -95,9 +98,6 @@ function Edit({
               })
             }, block.clientId);
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_ImageThumbnail__WEBPACK_IMPORTED_MODULE_6__.ImageThumbnail, {
-          imageId: previewModeImage.imageId,
-          imageHeight: "550px"
         })]
       }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
         className: "edit-mode",
@@ -243,7 +243,7 @@ __webpack_require__.r(__webpack_exports__);
 const ImageThumbnail = props => {
   const {
     imageId,
-    imageHeight = "150px",
+    imageHeight = "250px",
     ...rest
   } = props;
 

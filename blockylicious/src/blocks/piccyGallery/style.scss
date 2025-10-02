@@ -1,2 +1,52 @@
 .wp-block-blockylicious-piccy-gallery {
+	.gallery-thumbnails {
+		display: grid;
+		grid-template-columns: repeat(6, 1fr);
+		gap: 10px;
+	}
+
+	.thumb {
+		cursor: pointer;
+		display: block;
+		overflow: hidden;
+		filter: brightness(0.5);
+		transition: all 0.3s ease;
+		border-top: 5px solid transparent;
+		transform: scale(0.95);
+		box-sizing: border-box;
+		width: 100%;
+		object-fit: cover;
+		&.selected {
+			filter: brightness(1);
+			border-top-color: #8a42dd;
+			transform: scale(1);
+		}
+		&:hover {
+			filter: brightness(1);
+		}
+	}
+
+	.thumb-container {
+		cursor: pointer;
+	}
+
+	.thumb-container:hover {
+		.thumb {
+			filter: brightness(1);
+		}
+	}
+
+	.image-preview {
+		margin-bottom: 10px;
+		background-color: #c0c0c0;
+		min-height: 500px;
+		aspect-ratio: 3/2;
+		.image-preview-img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center;
+			aspect-ratio: 3/2;
+		}
+	}
 }

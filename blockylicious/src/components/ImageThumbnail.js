@@ -1,7 +1,7 @@
 import { useImage } from "../hooks/useImage";
 
 export const ImageThumbnail = (props) => {
-	const { imageId, imageHeight = "150px", ...rest } = props;
+	const { imageId, imageHeight = "250px", ...rest } = props;
 
 	//hook
 	const image = useImage(imageId);

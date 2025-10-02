@@ -51,6 +51,10 @@ export default function Edit({ clientId }) {
 			<div {...blockProps}>
 				{isPreviewOpen ? (
 					<>
+						<ImageThumbnail
+							imageId={previewModeImage.imageId}
+							imageHeight="550px"
+						/>
 						<div className="preview-mode">
 							{(innerBlocks || []).map((block) => {
 								return (
@@ -80,10 +84,6 @@ export default function Edit({ clientId }) {
 								);
 							})}
 						</div>
-						<ImageThumbnail
-							imageId={previewModeImage.imageId}
-							imageHeight="550px"
-						/>
 					</>
 				) : (
 					<div className="edit-mode">

@@ -3,36 +3,35 @@
 	position: relative;
 	box-sizing: border-box;
 
-
-    .preview-mode {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 10px;
-        padding: 0px 0px 10px 0px;
-    }
+	.preview-mode {
+		display: grid;
+		grid-template-columns: repeat(6, 1fr);
+		gap: 10px;
+		padding: 0px 0px 10px 0px;
+	}
 
 	.edit-mode {
 		background-color: #eee;
 		padding: 40px;
+
+		.piccy-label {
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: block;
+			background-color: #d1d1d1;
+			z-index: 10;
+			font-size: 10px;
+			font-weight: 600;
+			padding: 10px;
+			text-transform: uppercase;
+		}
+
+		// Gallery in edit mode
+		.piccy-gallery-inner-blocks {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 10px;
+		}
 	}
-
-    .piccy-label {
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: block;
-        background-color: #d1d1d1;
-        z-index: 10;
-        font-size: 10px;
-        font-weight: 600;
-        padding: 10px;
-        text-transform: uppercase;
-    }
-
-    // Gallery in edit mode
-    .piccy-gallery-inner-blocks {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-    }
 }

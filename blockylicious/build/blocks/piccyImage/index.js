@@ -16439,7 +16439,7 @@ __webpack_require__.r(__webpack_exports__);
 const ImageThumbnail = props => {
   const {
     imageId,
-    imageHeight = "150px",
+    imageHeight = "250px",
     ...rest
   } = props;
 

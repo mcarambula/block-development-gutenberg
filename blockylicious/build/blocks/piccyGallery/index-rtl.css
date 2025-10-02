@@ -16,7 +16,7 @@
   background-color: #eee;
   padding: 40px;
 }
-.wp-block-blockylicious-piccy-gallery .piccy-label {
+.wp-block-blockylicious-piccy-gallery .edit-mode .piccy-label {
   position: absolute;
   top: 0;
   right: 0;
@@ -28,7 +28,7 @@
   padding: 10px;
   text-transform: uppercase;
 }
-.wp-block-blockylicious-piccy-gallery .piccy-gallery-inner-blocks {
+.wp-block-blockylicious-piccy-gallery .edit-mode .piccy-gallery-inner-blocks {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
