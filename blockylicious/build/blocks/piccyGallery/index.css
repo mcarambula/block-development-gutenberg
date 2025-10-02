@@ -6,6 +6,12 @@
   position: relative;
   box-sizing: border-box;
 }
+.wp-block-blockylicious-piccy-gallery .preview-mode {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  padding: 0px 0px 10px 0px;
+}
 .wp-block-blockylicious-piccy-gallery .edit-mode {
   background-color: #eee;
   padding: 40px;

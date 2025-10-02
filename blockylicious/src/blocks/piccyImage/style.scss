@@ -1,2 +1,26 @@
 .wp-block-blockylicious-piccy-gallery {
+	.thumb {
+		cursor: pointer;
+		display: block;
+		overflow: hidden;
+		filter: brightness(0.5);
+		transition: all 0.3s ease;
+		border-top: 5px solid transparent;
+		transform: scale(0.95);
+		&.selected {
+			filter: brightness(1);
+			border-top-color: #8a42dd;
+			transform: scale(1);
+		}
+	}
+
+    .thumb-container {
+        cursor: pointer;
+    }
+
+	.thumb-container:hover {
+		.thumb {
+			filter: brightness(1);
+		}
+	}
 }

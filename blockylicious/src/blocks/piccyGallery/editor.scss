@@ -2,6 +2,15 @@
 	border: 1px dotted #f00;
 	position: relative;
 	box-sizing: border-box;
+
+
+    .preview-mode {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 10px;
+        padding: 0px 0px 10px 0px;
+    }
+
 	.edit-mode {
 		background-color: #eee;
 		padding: 40px;
@@ -20,6 +29,7 @@
         text-transform: uppercase;
     }
 
+    // Gallery in edit mode
     .piccy-gallery-inner-blocks {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
