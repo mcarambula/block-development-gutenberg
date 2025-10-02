@@ -165,7 +165,6 @@ return array(
 				'type' => 'object',
 				'default' => array(
 					'color' => array(
-						'background' => '#ec4899',
 						'text' => 'black',
 						'link' => 'blue'
 					),

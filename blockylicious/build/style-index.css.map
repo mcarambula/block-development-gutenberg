@@ -1,0 +1,1 @@
+{"version":3,"file":"./style-index.css","mappings":";;;AAAA;EACI;EACA;EACA;AACJ,C","sources":["webpack://blockylicious/./src/style.scss"],"sourcesContent":[".blockylicious-low-highlight {\n    background-size: 100% 40%;\n    background-repeat: no-repeat;\n    background-position-y: 95%;\n}"],"names":[],"sourceRoot":""}
